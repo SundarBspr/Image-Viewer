@@ -1,6 +1,6 @@
 function ellipsify (str) {
   if (str.length > 20) {
-      return (str.substring(0, 20) + "..."+str.slice(-10));
+      return (str.substring(0, 20) + "..."+str.slice(-10))
   }
   else {
   return str;
@@ -14,7 +14,7 @@ function jsonTask(items){
     items.forEach(item => {
       const left=document.querySelector(".left-item")
       const Box=document.createElement("div")
-      Box.style.display="grid";
+      Box.style.display="grid"
       Box.style.gridTemplateColumns="60px 240px"
       Box.insertAdjacentHTML('beforeend',`
         <img src=${item["previewImage"]} class="logo" width="40px" height="40px" margin:"0px">
@@ -22,41 +22,43 @@ function jsonTask(items){
       `)
       const rightImg=document.createElement("img")
       rightImg.setAttribute("src",item["previewImage"])
-      
-      // console.log(logo)
-      
       Box.style.margin="3px 0px"
       Box.classList.add("box")
-
       left.append(Box)
-      
     });
     const titleImage=document.querySelectorAll(".titleImage")
     titleImage.forEach((item)=>{
-      // console.log(item.innerHTML)
       item.innerHTML=ellipsify(item.innerHTML)
       item.style.marginTop+="10px"
       item.style.marginLeft="0px"
     })   
-    const logos=document.querySelectorAll(".logo")
-    console.log(logos)
+    var logos=document.querySelectorAll(".logo")
+    var boxes=document.querySelectorAll(".box")
+    boxes[0].style.backgroundColor="skyblue"
     logos.forEach((logo)=>{
       logo.addEventListener("click",(e)=>{
+        boxes.forEach((box)=>{
+          box.style.backgroundColor="white"
+        })
         InitialRightImage.setAttribute("src",logo.currentSrc)
+        const parent=logo.parentElement// parent is the current box(box consists of both logo and title)
+        parent.style.backgroundColor="skyblue"
       })
     })
-    const boxes=document.querySelectorAll(".box")
-    console.log(boxes)
-    boxes.forEach((box)=>{
-      box.addEventListener("mouseover",(e)=>{
-        box.style.backgroundColor="skyblue"
-      })
-    })
-    boxes.forEach((box)=>{
-      box.addEventListener("mouseleave",(e)=>{
-        box.style.backgroundColor="white"
-      })
-    })
+
+    //THIS IS FOR HOVERING THE MOUSE(NOT REQUIRED)
+    // const boxes=document.querySelectorAll(".box")
+    // console.log(boxes)
+    // boxes.forEach((box)=>{
+    //   box.addEventListener("mouseover",(e)=>{
+    //     box.style.backgroundColor="skyblue"
+    //   })
+    // })
+    // boxes.forEach((box)=>{
+    //   box.addEventListener("mouseleave",(e)=>{
+    //     box.style.backgroundColor="white"
+    //   })
+    // })
 }
 
 
