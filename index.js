@@ -32,8 +32,12 @@ function jsonTask(items){
       item.style.marginTop+="10px"
       item.style.marginLeft="0px"
     })   
+    //global variables
     var logos=document.querySelectorAll(".logo")
     var boxes=document.querySelectorAll(".box")
+    var textBox=document.querySelector("#desc")
+    
+    
     boxes[0].style.backgroundColor="skyblue"
     logos.forEach((logo)=>{
       logo.addEventListener("click",(e)=>{
@@ -43,6 +47,8 @@ function jsonTask(items){
         InitialRightImage.setAttribute("src",logo.currentSrc)
         const parent=logo.parentElement// parent is the current box(box consists of both logo and title)
         parent.style.backgroundColor="skyblue"
+        const titleImageItem=logo.nextElementSibling
+        updateText(titleImageItem)//////////
       })
     })
     
@@ -61,6 +67,8 @@ function jsonTask(items){
       currentBox=logos[currentChild].parentElement
       currentBox.style.backgroundColor="skyblue"
       InitialRightImage.setAttribute("src",logos[currentChild].currentSrc)
+      const titleImageItem=logos[currentChild].nextElementSibling
+      updateText(titleImageItem)
     }
     else if(e.key=="ArrowUp"){
       currentBox=logos[currentChild].parentElement
@@ -74,8 +82,26 @@ function jsonTask(items){
       currentBox=logos[currentChild].parentElement
       currentBox.style.backgroundColor="skyblue"
       InitialRightImage.setAttribute("src",logos[currentChild].currentSrc)
+      const titleImageItem=logos[currentChild].nextElementSibling
+      updateText(titleImageItem)
     }
     }
+
+    //Adding Text Box Functionality
+    
+    textBox.placeholder=titleImage[0].innerText
+    function updateText(titleImageItem){
+      textBox.placeholder=titleImageItem.innerText
+      textBoxValue=textBox.value;
+
+      if(textBoxValue!=""){
+        titleImageItem.innerText=textBoxValue
+        textBox.placeholder=titleImageItem.innerText
+      }
+      textBox.value=""
+      textBox.placeholder=titleImageItem.innerText
+    }
+
 
     //THIS IS FOR HOVERING THE MOUSE(NOT REQUIRED)
     // const boxes=document.querySelectorAll(".box")
