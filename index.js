@@ -45,6 +45,37 @@ function jsonTask(items){
         parent.style.backgroundColor="skyblue"
       })
     })
+    
+    //Adding Keyboard events
+    var currentChild=0
+    document.onkeydown=function(e){
+      if(e.key=="ArrowDown"){
+      currentBox=logos[currentChild].parentElement
+      currentBox.style.backgroundColor="white"
+      if(currentChild==logos.length-1){
+        currentChild=0
+      }
+      else{
+        currentChild+=1
+      }
+      currentBox=logos[currentChild].parentElement
+      currentBox.style.backgroundColor="skyblue"
+      InitialRightImage.setAttribute("src",logos[currentChild].currentSrc)
+    }
+    else if(e.key=="ArrowUp"){
+      currentBox=logos[currentChild].parentElement
+      currentBox.style.backgroundColor="white"
+      if(currentChild==0){
+        currentChild=logos.length-1
+      }
+      else{
+        currentChild-=1
+      }
+      currentBox=logos[currentChild].parentElement
+      currentBox.style.backgroundColor="skyblue"
+      InitialRightImage.setAttribute("src",logos[currentChild].currentSrc)
+    }
+    }
 
     //THIS IS FOR HOVERING THE MOUSE(NOT REQUIRED)
     // const boxes=document.querySelectorAll(".box")
