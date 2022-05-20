@@ -3,18 +3,18 @@ body{
     padding: 0;
 }
 .grid-container{
-    margin-top: 2%;
+    margin-top: 0%;
     display: grid;
     justify-content: center;
     align-items: top; 
-    grid-template-columns: 300px 200px 500px;
+    grid-template-columns: 120px 310px 600px auto;
+    
 }
 .left-item{
-    margin-left: 30%;
+    margin-top:4%;
     display:flex;
     flex-direction: column;
 }
 .right-item{
-
-    margin-left: 60%;
+    margin-top:3%;
 }
