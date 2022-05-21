@@ -38,7 +38,7 @@ function jsonTask(items){
     var boxes=document.querySelectorAll(".box")
     var textBox=document.querySelector("#desc")
     var currentChild=0
-    textBox.placeholder=titleImage[currentChild].innerText
+    textBox.value=titleImage[currentChild].innerText
     
     boxes[currentChild].style.backgroundColor="skyblue"
     logos.forEach((logo)=>{
@@ -89,15 +89,13 @@ function jsonTask(items){
       if(textBox.value!=""){
         titleImage[currentChild].innerText=textBox.value
       }
-      textBox.value=""
-      textBox.placeholder=titleImage[currentChild].innerText
+      textBox.value=titleImage[currentChild].innerText
     }
     }
 
     //Adding Text Box Functionality
     function updateText(){
-      textBox.placeholder=titleImage[currentChild].innerText
-      textBox.value=""
+      textBox.value=titleImage[currentChild].innerText
     }
 
 
