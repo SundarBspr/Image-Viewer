@@ -10,7 +10,7 @@ function jsonTask(items){
   const InitialRightImage=document.querySelector(".rImg")
   InitialRightImage.setAttribute("src",items[0].previewImage)
   InitialRightImage.setAttribute("width","500px")
-  InitialRightImage.setAttribute("height","700px")
+  InitialRightImage.setAttribute("height","650px")
     items.forEach(item => {
       const left=document.querySelector(".left-item")
       const Box=document.createElement("div")
@@ -22,7 +22,8 @@ function jsonTask(items){
       `)
       const rightImg=document.createElement("img")
       rightImg.setAttribute("src",item["previewImage"])
-      Box.style.margin="3px 0px"
+      Box.style.margin="3px 7px"
+      Box.style.borderRadius="10px"
       Box.classList.add("box")
       left.append(Box)
     });

@@ -8,7 +8,6 @@ body{
     justify-content: center;
     align-items: top; 
     grid-template-columns: 120px 310px 600px auto;
-    
 }
 .left-item{
     margin-top:5%;
