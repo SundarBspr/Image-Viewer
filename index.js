@@ -36,24 +36,25 @@ function jsonTask(items){
     var logos=document.querySelectorAll(".logo")
     var boxes=document.querySelectorAll(".box")
     var textBox=document.querySelector("#desc")
+    var currentChild=0
+    textBox.placeholder=titleImage[currentChild].innerText
     
-    
-    boxes[0].style.backgroundColor="skyblue"
+    boxes[currentChild].style.backgroundColor="skyblue"
     logos.forEach((logo)=>{
       logo.addEventListener("click",(e)=>{
         boxes.forEach((box)=>{
           box.style.backgroundColor="white"
         })
+        logo.parentElement.style.backgroundColor="skyblue"
+        console.log(logo)
         InitialRightImage.setAttribute("src",logo.currentSrc)
-        const parent=logo.parentElement// parent is the current box(box consists of both logo and title)
-        parent.style.backgroundColor="skyblue"
-        const titleImageItem=logo.nextElementSibling
-        updateText(titleImageItem)//////////
+        currentChild=Array.from(logos).indexOf(logo)
+        updateText()
       })
     })
-    
+
     //Adding Keyboard events
-    var currentChild=0
+    
     document.onkeydown=function(e){
       if(e.key=="ArrowDown"){
       currentBox=logos[currentChild].parentElement
@@ -67,8 +68,7 @@ function jsonTask(items){
       currentBox=logos[currentChild].parentElement
       currentBox.style.backgroundColor="skyblue"
       InitialRightImage.setAttribute("src",logos[currentChild].currentSrc)
-      const titleImageItem=logos[currentChild].nextElementSibling
-      updateText(titleImageItem)
+      updateText()
     }
     else if(e.key=="ArrowUp"){
       currentBox=logos[currentChild].parentElement
@@ -82,24 +82,21 @@ function jsonTask(items){
       currentBox=logos[currentChild].parentElement
       currentBox.style.backgroundColor="skyblue"
       InitialRightImage.setAttribute("src",logos[currentChild].currentSrc)
-      const titleImageItem=logos[currentChild].nextElementSibling
-      updateText(titleImageItem)
+      updateText()
+    }
+    else if(e.key=="Enter"){
+      if(textBox.value!=""){
+        titleImage[currentChild].innerText=textBox.value
+      }
+      textBox.value=""
+      textBox.placeholder=titleImage[currentChild].innerText
     }
     }
 
     //Adding Text Box Functionality
-    
-    textBox.placeholder=titleImage[0].innerText
-    function updateText(titleImageItem){
-      textBox.placeholder=titleImageItem.innerText
-      textBoxValue=textBox.value;
-
-      if(textBoxValue!=""){
-        titleImageItem.innerText=textBoxValue
-        textBox.placeholder=titleImageItem.innerText
-      }
+    function updateText(){
+      textBox.placeholder=titleImage[currentChild].innerText
       textBox.value=""
-      textBox.placeholder=titleImageItem.innerText
     }
 
 
