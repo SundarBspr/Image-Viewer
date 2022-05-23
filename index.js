@@ -9,8 +9,7 @@ function ellipsify (str) {
 function jsonTask(items){
   const InitialRightImage=document.querySelector(".rImg")
   InitialRightImage.setAttribute("src",items[0].previewImage)
-  InitialRightImage.setAttribute("width","500px")
-  InitialRightImage.setAttribute("height","650px")
+  InitialRightImage.style.maxHeight="700px";
     items.forEach(item => {
       const left=document.querySelector(".left-item")
       const Box=document.createElement("div")
