@@ -54,9 +54,7 @@ function jsonTask(items){
     })
 
     //Adding Keyboard events
-    
-    document.onkeydown=function(e){
-      if(e.key=="ArrowDown"){
+    function goRightImg(){
       currentBox=logos[currentChild].parentElement
       currentBox.style.backgroundColor="white"
       if(currentChild==logos.length-1){
@@ -70,7 +68,7 @@ function jsonTask(items){
       InitialRightImage.setAttribute("src",logos[currentChild].currentSrc)
       updateText()
     }
-    else if(e.key=="ArrowUp"){
+    function goLeftImg(){
       currentBox=logos[currentChild].parentElement
       currentBox.style.backgroundColor="white"
       if(currentChild==0){
@@ -83,6 +81,13 @@ function jsonTask(items){
       currentBox.style.backgroundColor="skyblue"
       InitialRightImage.setAttribute("src",logos[currentChild].currentSrc)
       updateText()
+    }
+    document.onkeydown=function(e){
+      if(e.key=="ArrowDown"){
+        goRightImg();
+    }
+      else if(e.key=="ArrowUp"){
+        goLeftImg();
     }
     else if(e.key=="Enter"){
       if(textBox.value!=""){
@@ -97,6 +102,15 @@ function jsonTask(items){
       textBox.value=titleImage[currentChild].innerText
     }
 
+    //Image Carousel
+    prevBtn=document.querySelector(".prev")
+    nextBtn=document.querySelector(".next")
+    prevBtn.addEventListener("click",()=>{
+      goLeftImg();
+    })
+    nextBtn.addEventListener("click",()=>{
+      goRightImg();
+    })
 
     //THIS IS FOR HOVERING THE MOUSE(NOT REQUIRED)
     // const boxes=document.querySelectorAll(".box")
