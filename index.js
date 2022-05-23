@@ -35,22 +35,26 @@ function jsonTask(items){
     //global variables
     var logos=document.querySelectorAll(".logo")
     var boxes=document.querySelectorAll(".box")
-    var textBox=document.querySelector("#desc")
+    var titles=document.querySelectorAll(".titleImage")
+    var textBox=document.getElementById("desc")
     var currentChild=0
     textBox.value=titleImage[currentChild].innerText
     
     boxes[currentChild].style.backgroundColor="skyblue"
-    logos.forEach((logo)=>{
-      logo.addEventListener("click",(e)=>{
+    boxes.forEach((box)=>{
+      box.addEventListener("click",(e)=>{
         boxes.forEach((box)=>{
           box.style.backgroundColor="white"
         })
-        logo.parentElement.style.backgroundColor="skyblue"
-        console.log(logo)
-        InitialRightImage.setAttribute("src",logo.currentSrc)
-        currentChild=Array.from(logos).indexOf(logo)
+        box.style.backgroundColor="skyblue"
+        currentChild=Array.from(boxes).indexOf(box)
+        console.log(boxes[currentChild])
+        InitialRightImage.setAttribute("src",logos[currentChild].currentSrc)
         updateText()
       })
+    })
+    textBox.addEventListener("input",(e)=>{
+      titles[currentChild].innerText=textBox.value
     })
 
     //Adding Keyboard events
@@ -89,12 +93,12 @@ function jsonTask(items){
       else if(e.key=="ArrowUp"){
         goLeftImg();
     }
-    else if(e.key=="Enter"){
-      if(textBox.value!=""){
-        titleImage[currentChild].innerText=textBox.value
-      }
-      textBox.value=titleImage[currentChild].innerText
-    }
+    // else if(e.key=="Enter"){
+    //   if(textBox.value!=""){
+    //     titleImage[currentChild].innerText=textBox.value
+    //   }
+    //   textBox.value=titleImage[currentChild].innerText
+    // }
     }
 
     //Adding Text Box Functionality
